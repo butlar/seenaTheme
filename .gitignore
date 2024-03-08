@@ -96,3 +96,6 @@ source/partials/icons/lock.hbs
 source/partials/icons/rss.hbs
 source/partials/icons/search.hbs
 source/partials/icons/twitter.hbs
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
