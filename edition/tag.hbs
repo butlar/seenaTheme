@@ -1,0 +1,441 @@
+{{!< default}} <style>
+    .site-content {
+    flex-grow: 1;
+    padding: 0vmin 0 !important;
+    }
+    {{!-- banner css --}}
+
+    .banner_hero {
+    width: 100%;
+    max-width: 100%;
+    height: 550px;
+    max-height: 300px;
+    min-height: 300px;
+    overflow: hidden;
+    }
+    {{!-- banner below --}}
+    .banner_below {
+    padding: 30px 0;
+    }
+    header.bnr_blw_sec {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+    }
+
+    header.bnr_blw_sec h1.single-title {
+    margin: 0;
+    text-align: left;
+    color: #000;
+    }
+    header.bnr_blw_sec .single-excerpt{
+    margin: 0;
+    text-align: left;
+    color: #000;
+    }
+
+    {{!-- body color --}}
+
+    body {
+    background-color: #ffffff !important;
+    }
+
+    {{!-- sharing button --}}
+
+    .share-button {
+    border: 0px solid whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    box-shadow: 0px 0px 2px;
+    padding: 10px;
+    box-shadow: 0 0 4px rgb(0, 0, 0, 0.3);
+    min-width: 174px;
+    text-transform: uppercase;
+    }
+    .sharing-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25px;
+    }
+    .social-buttons.mt-3:hover {
+    cursor: pointer;
+    }
+
+    .taggedd{
+    margin-top: 60px !important;
+    margin-bottom: 80px !important;
+    font-size: 1.5rem;
+    font-weight: 600;
+    }
+    .posts-articles {
+    padding: 30px;
+    box-shadow: 0 0 4px rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    }
+    .post-feed-title-wrapper {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8rem;
+    }
+    .post-feed-title {
+    color: #000 !important;
+    font-size: 33px !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    /* align-items: center; */
+    }
+    .pt-8 {
+    padding-top: 8rem !important;
+    }
+    .pb-8 {
+    padding-bottom: 8rem !important;
+    }
+
+    .feed-wrapper h2{
+    color:#000 !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 20px !important;
+
+
+    }
+    .feed-right, .feed-excerpt {
+
+    color:#484848 !important;
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+    text-transform: capitalize !important;
+    }
+    .author-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    }
+    .author-list .author-name a {
+    color: #000;
+    text-decoration: none;
+
+    }
+    .author-list .author-image-placeholder {
+    border: 2px solid #63eafb;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin: 0 3px;
+    overflow: hidden;
+    width: 50px;
+    }
+    .tagg {
+    margin-left:20rem !important;
+    }
+    .post-feed.expanded:not(.text-only) .feed {
+    border-top: 0;
+    padding: 0.5rem 0 !important;
+    }
+    .feed-image {
+    width: 170px !important;
+    height: 175px !important;
+    }
+    .load-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+    margin-bottom: 30px;
+    }
+    body:not(.with-full-cover) .cover {
+    margin-top: 0vmin;
+    }
+
+    .u-object-fit {
+    height: 100%;
+    left: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    }
+    .line_outr{
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    gap: 10px;
+    max-width: 200px;
+    width: 200px;
+    padding-top: 10px;
+    }
+    .line_inr{
+    width: 30%;
+    height: 4px;
+    background-color: #02cce6;
+    }
+    .line_inr_one{
+    width: 60%;
+    }
+    </style>
+    <main class="site-main">
+
+
+        {{#tag}}
+        <div class="container gh-inner">
+            <div class="row cover ">
+                <div class="banner_hero ">
+                    {{!-- {{#if @custom.tag_feature_image}} --}}
+                    <div class="wide-image-container">
+                        <img src="{{img_url @custom.tag_feature_image size="large" format="webp"}}" />
+                        <img src="{{img_url @custom.tag_feature_image size="large"}}"  srcset="
+                        {{img_url @custom.tag_feature_image size="s"}} 400w,
+                        {{img_url @custom.tag_feature_image size="m"}} 750w,
+                        {{img_url @custom.tag_feature_image size="l"}} 960w,
+                        {{img_url @custom.tag_feature_image size="xl"}} 2000w"
+                            sizes="(min-width: 2000px) calc((1130px - 60px) / 3), (min-width: 992px) calc((90vw - 60px) / 3), (min-width: 768px) calc((90vw - 30px) / 2), 90vw"
+                              alt="{{title}}" loading="lazy">
+                    </div>
+                    {{!-- {{/if}} --}}
+                </div>
+
+            </div>
+
+        </div>
+        <div class="banner_below">
+            <div class="container">
+                <div class="row">
+                    <div class="tag-details">
+                        <section class="">
+                            <header class="bnr_blw_sec">
+                                <h1 class="single-title">{{name}}</h1>
+                                {{#if description}}
+                                <div class="single-excerpt">{{description}}</div>
+                                {{/if}}
+                                <!-- Add any additional information you want to display about the tag -->
+
+                                <!-- Social Sharing Buttons -->
+
+                                <div class="sharing-buttons">
+                                    <div class="social-buttons mt-3">
+                                        <!-- Spotify Sharing Button -->
+                                        <div class="share-button" data-url="{{url}}" data-title="{{title}}"
+                                            onclick="shareOnSpotify(this)">
+
+                                            <img src="https://w7.pngwing.com/pngs/25/70/png-transparent-spotify-logo-streaming-media-music-spotify-logo-text-business-symbol-thumbnail.png"
+                                                alt="Spotify Logo" class="mr-2" height="20" style="width: 24px;
+                                            ">
+                                            Spotify
+                                        </div>
+                                    </div>
+                                    <div class="social-buttons mt-3">
+                                        <!-- Apple Podcast Sharing Button -->
+                                        <div class="share-button" data-url="{{url}}" data-title="{{title}}"
+                                            onclick="shareOnApplePodcast(this)">
+                                            <img src="https://w7.pngwing.com/pngs/491/876/png-transparent-podcast-itunes-app-store-apple-purple-violet-magenta-thumbnail.png"
+                                                alt="apple-podcast Logo" class="mr-2" height="20" style="width: 24px;
+                                                ">
+                                            Apple Podcast
+                                        </div>
+                                    </div>
+                                    <div class="social-buttons mt-3">
+                                        <!-- Pandora Sharing Button -->
+                                        <div class="share-button" data-url="{{url}}" data-title="{{title}}"
+                                            onclick="shareOnPandora(this)">
+                                            <img src="https://w7.pngwing.com/pngs/228/963/png-transparent-pandora-logo-music-genome-project-internet-radio-pandora-miscellaneous-blue-music-download-thumbnail.png"
+                                                alt="Pandora Logo" class="mr-2" height="20" style="width: 24px;
+                                                ">
+                                            Pandora
+                                        </div>
+                                    </div>
+                                    <div class="social-buttons mt-3">
+                                        <!-- Amazon Music Sharing Button -->
+                                        <div class="share-button" data-url="{{url}}" data-title="{{title}}"
+                                            onclick="shareOnAmazonMusic(this)">
+                                            <img src="https://w7.pngwing.com/pngs/850/509/png-transparent-amazon-music-app-logo-tech-companies-thumbnail.png"
+                                                alt="Amazon Music Logo" class="mr-2" height="20" style="width: 24px;
+                                                ">
+                                            Amazon Music
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {{/tag}}
+
+
+
+
+
+        {{#if @custom.feed_title}}
+        <div class=" container gh-inner pt-8  ">
+            <h2 class=" post-feed-title ">{{@custom.feed_title}}</h2>
+            <span class="line_outr">
+                <span class="line_inr line_inr_one"></span>
+                <span class="line_inr"></span>
+            </span>
+        </div>
+
+        {{/if}}
+        <div class="container gh-inner post-feed taggedd gh-feed expanded">
+            {{#foreach posts}}
+            <div class=" posts-articles">
+                <article class="feed {{post_class}}" data-month="{{date format=" MMMM YYYY"}}">
+
+                    <div class="feed-calendar">
+                        <div class="feed-calendar-month">
+                            {{date published_at format="MMM"}}
+                        </div>
+                        <div class="feed-calendar-day">
+                            {{date published_at format="DD"}}
+                        </div>
+                    </div>
+
+
+                    <div class="feed-image u-placeholder rectangle">
+                        {{#if feature_image}}
+                        <img class="u-object-fit" srcset="{{img_url feature_image size=" s"}} 400w, {{img_url
+                            feature_image size="m" }} 750w, {{img_url feature_image size="l" }} 960w, {{img_url
+                            feature_image size="xl" }} 1140w" src="{{img_url feature_image size=" m"}}"
+                            sizes="(min-width: 576px) 160px, 90vw"
+                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" loading="lazy">
+                        {{/if}}
+                    </div>
+
+
+                    <div class="feed-wrapper">
+                        <h2 class="feed-title">{{title}}</h2>
+                        {{#if excerpt}}
+                        <div class="feed-excerpt">{{excerpt words="22"}}</div>
+                        {{/if}}
+                        <div class="feed-right">
+                            {{#if @custom.show_author}}
+                            <div class="author-list">
+                                {{#foreach authors}}
+                                <div class="author-image-placeholder u-placeholder square">
+                                    <a href="{{url}}" title="{{name}}">
+                                        {{#if profile_image}}
+                                        <img class="author-image u-object-fit" src="{{img_url profile_image size="
+                                            xs"}}" alt="{{name}}" loading="lazy">
+                                        {{else}}
+                                        <span class="u-object-fit">{{> "icons/avatar"}}</span>
+                                        {{/if}}
+                                    </a>
+                                </div>
+                                {{#if name}}
+                                <div class="author-name">
+                                    <a href="{{url}}" title="{{name}}">{{name}}</a>
+                                </div>
+                                {{/if}}
+                                {{/foreach}}
+                            </div>
+                            {{/if}}
+                            <time class="tagg feed-date" datetime="{{date format=" YYYY-MM-DD"}}">
+                                {{date published_at}}
+                            </time>
+                            <div class="feed-visibility feed-visibility-{{visibility}}">
+                                {{> "icons/star"}}
+                            </div>
+                            {{#if reading_time}}
+                            <div class="feed-length">
+                                {{reading_time}}
+                            </div>
+                            {{/if}}
+                            {{#if @site.comments_enabled}}
+                            {{comment_count autowrap="div" class="feed-comments"}}
+                            {{/if}}
+                            <div class="feed-icon">
+                                {{> "icons/chevron-right"}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="u-permalink" href="{{url}}" aria-label="{{title}}"></a>
+
+                </article>
+            </div>
+
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+
+    </main>
+    <script>
+        function shareOnSpotify(button) {
+            // Replace 'your-url' and 'your-title' with the actual URL and title values
+            var url = button.getAttribute("data-url").trim();
+
+
+            var title = button.getAttribute('data-title').trim();
+            var site = window.location.origin;
+            console.log("url", site + url);
+            var spotifyShareUrl = 'https://open.spotify.com/share?uri=' + url;
+
+            // Open a new window for sharing on Spotify
+            window.open(spotifyShareUrl, 'Share on Spotify', 'width=600,height=400');
+        }
+        function shareOnApplePodcast(button) {
+            // Replace 'your-url' and 'your-title' with the actual URL and title values
+            var url = button.getAttribute("data-url").trim();
+
+
+            var title = button.getAttribute('data-title').trim();
+            var site = window.location.origin;
+            console.log("url", site + url);
+
+            var spotifyShareUrl = 'https://music.apple.com/share?uri=' + url;
+
+            // Open a new window for sharing on Spotify
+            window.open(spotifyShareUrl, 'Share on Spotify', 'width=600,height=400');
+        }
+        function shareOnPandora(button) {
+            var url = button.getAttribute("data-url").trim();
+
+
+            var title = button.getAttribute('data-title').trim();
+            var site = window.location.origin;
+            console.log("url", site + url);
+
+            var spotifyShareUrl = 'https://www.pandora.com/share?uri=' + url;
+
+            // Open a new window for sharing on Spotify
+            window.open(spotifyShareUrl, 'Share on Spotify', 'width=600,height=400');
+        }
+        function shareOnAmazonMusic(button) {
+            var url = button.getAttribute("data-url").trim();
+
+
+            var title = button.getAttribute('data-title').trim();
+            var site = window.location.origin;
+            console.log("url", site + url);
+
+            var spotifyShareUrl = 'https://music.amazon.com/share?uri=' + url;
+
+            // Open a new window for sharing on Spotify
+            window.open(spotifyShareUrl, 'Share on Spotify', 'width=600,height=400');
+        }
+    </script>

@@ -1,0 +1,113 @@
+{{!< default}}
+<style>
+
+
+
+    .sm-pagination {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .sm-pagination a {
+        font-size: 15px;
+        font-weight:bold;
+        display: inline-block;
+        margin: 0 5px;
+        padding: 10px 16px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        border-radius: 40px;
+        color: #333;
+        transition: background-color 0.3s;
+        background-color: #fff;
+    }
+
+    .sm-pagination a.active {
+        font-size: 15px;
+        font-weight:bold;
+        background-color: #02cce6;
+        color: #000;
+        border-color: #02cce6;
+    }
+    .sm-pagination span {
+    font-size: 20px;
+    font-weight: bold;
+    }
+</style>
+
+<div class="sm-pagination" data-page="{{pagination.page}}" data-prev="{{pagination.prev}}"
+    data-next="{{pagination.next}}" data-pages="{{pagination.pages}}">
+</div>
+
+<script>
+    function generatePagination() {
+        const pagination = document.querySelector(".sm-pagination");
+
+        if (!pagination) return;
+
+        const { page, prev, next, pages } = pagination.dataset;
+        const baseUrl = window.location.pathname.replace(/\/page\/\d+\/?$/, '');
+
+        // Number of pagination links to display
+        const maxLinks = 3;
+
+        // Clear existing pagination items
+        pagination.innerHTML = "";
+
+        // Adding previous button
+        if (prev) {
+            const prevPage = +page - 1;
+            const prevButton = document.createElement("a");
+            prevButton.href = prevPage >= 1 ? (prevPage === 1 ? baseUrl : `${baseUrl}/page/${prevPage}`) : null;
+            prevButton.textContent = "Previous";
+            pagination.appendChild(prevButton);
+        }
+
+        // Adding numbered pages with ellipsis
+        for (let i = Math.max(1, +page - Math.floor(maxLinks / 2)); i <= Math.min(pages, +page + Math.floor(maxLinks / 2)); i++) {
+            const pageButton = document.createElement("a");
+            pageButton.href = i === 1 ? baseUrl : `${baseUrl}/page/${i}`;
+            pageButton.textContent = i;
+
+            // Add 'active' class to the current page
+            if (+page === i) {
+                pageButton.classList.add("active");
+            }
+
+            pagination.appendChild(pageButton);
+        }
+
+        // Adding ellipsis before next button
+        if (+page + Math.floor(maxLinks / 2) < pages) {
+            const ellipsis = document.createElement("span");
+            ellipsis.textContent = " ... ";
+            pagination.appendChild(ellipsis);
+        }
+
+        // Adding next button
+        if (next) {
+            const nextPage = +page + 1;
+            const nextButton = document.createElement("a");
+            nextButton.href = nextPage <= pages ? `${baseUrl}/page/${nextPage}` : null;
+            nextButton.textContent = "Next";
+            pagination.appendChild(nextButton);
+        }
+    }
+
+    // Call the function on page load
+    document.addEventListener('DOMContentLoaded', generatePagination);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
